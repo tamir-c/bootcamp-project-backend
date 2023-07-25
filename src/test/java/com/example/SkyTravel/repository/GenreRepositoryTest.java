@@ -33,6 +33,7 @@ public class GenreRepositoryTest {
 
         //act
         List<Genre> genre = genreRepository.findByGenreName("Action%");
+        
 
         //assert
         assertEquals(1, genre.size());
