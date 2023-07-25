@@ -13,7 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 public class WebExceptionHandler {
 
     @ExceptionHandler({NotFoundException.class})
-    public final ResponseEntity<ErrorMessage> handleMemberNotFound(Exception ex, WebRequest request) {
+    public final ResponseEntity<ErrorMessage> handleNotFound(Exception ex, WebRequest request) {
         int status = HttpStatus.NOT_FOUND.value();
         return ResponseEntity.status(status).body(new ErrorMessage(ex.getMessage()));
     }

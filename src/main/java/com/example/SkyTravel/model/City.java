@@ -3,12 +3,14 @@ package com.example.SkyTravel.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class City {
 
     @Id
@@ -17,6 +19,10 @@ public class City {
 
     @NonNull
     private String city_name;
+
+    private String city_description;
+
+    private String city_url;
 
 
     private double longitude;

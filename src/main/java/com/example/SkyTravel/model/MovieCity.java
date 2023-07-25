@@ -1,11 +1,13 @@
 package com.example.SkyTravel.model;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Entity
 @Data
 @Table(name = "movie_city")
+@NoArgsConstructor
 public class MovieCity {
 
     @Id
