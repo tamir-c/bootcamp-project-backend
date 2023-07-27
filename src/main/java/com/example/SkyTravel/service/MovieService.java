@@ -1,11 +1,14 @@
 package com.example.SkyTravel.service;
 
+import com.example.SkyTravel.exception.InvalidIdException;
+import com.example.SkyTravel.exception.NotFoundException;
 import com.example.SkyTravel.model.Movie;
 import com.example.SkyTravel.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -14,11 +17,20 @@ public class MovieService {
     private MovieRepository movieRepo;
 
     public List<Movie> getAllMovies() {
-        return movieRepo.findAll();
+        List<Movie> movieList = movieRepo.findAll();
+        if(movieList.isEmpty()){
+            throw new NotFoundException("Movies Not Found");
+        }
+        return movieList;
     }
 
     public Movie getMovieById(int movieId) {
-        return movieRepo.findById(movieId).orElse(null);
+        if(movieId > 0){
+            Optional<Movie> optionalMovie = movieRepo.findById(movieId);
+            return optionalMovie.orElseThrow(() -> new NotFoundException("Movie Id Not Found"));
+        }else{
+            throw new InvalidIdException("Movie Id is Invalid");
+        }
     }
 
 }

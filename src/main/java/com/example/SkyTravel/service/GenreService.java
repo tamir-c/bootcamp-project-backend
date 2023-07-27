@@ -17,7 +17,11 @@ public class GenreService {
     private GenreRepository genreRepo;
 
     public List<Genre> getAllGenres() {
-        return genreRepo.findAll();
+        List<Genre> genreList = genreRepo.findAll();
+        if (genreList.isEmpty()) {
+            throw new NotFoundException("Genre Not Found");
+        }
+        return genreList;
     }
 
     public Genre getGenreById(int genreId) {
@@ -31,11 +35,10 @@ public class GenreService {
 
     public List<Genre> getGenreByName(String name){
         List<Genre> genreList = genreRepo.findByGenreName(name);
-        if(genreList.get(0).getGenre_name() == null){
+        if(genreList.isEmpty()){
             throw new NotFoundException("Genre Not Found");
-        }else{
-            return genreList;
         }
+        return genreList;
 
     }
 

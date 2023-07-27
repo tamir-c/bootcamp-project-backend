@@ -21,12 +21,10 @@ public class CityController {
         return cityService.getAllCities();
     }
 
-
-
-//    @GetMapping("/{cityId}")
-//    public City getCityById(@PathVariable int cityId) {
-//        return cityService.getCityById(cityId);
-//    }
+    @GetMapping("/{cityId}")
+    public City getCityById(@PathVariable int cityId) {
+        return cityService.getCityById(cityId);
+    }
 
 
 
