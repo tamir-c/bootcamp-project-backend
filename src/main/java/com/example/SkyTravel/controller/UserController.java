@@ -6,6 +6,7 @@ import com.example.SkyTravel.model.User;
 import com.example.SkyTravel.service.MovieService;
 import com.example.SkyTravel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +21,9 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/{user_id}")
-    public User getUserById(@PathVariable int user_id) {
-        return userService.getUserById(user_id);
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable int id) {
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
 }

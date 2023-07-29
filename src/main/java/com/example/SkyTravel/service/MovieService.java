@@ -24,9 +24,9 @@ public class MovieService {
         return movieList;
     }
 
-    public Movie getMovieById(int movieId) {
-        if(movieId > 0){
-            Optional<Movie> optionalMovie = movieRepo.findById(movieId);
+    public Movie getMovieById(int id) {
+        if(id > 0){
+            Optional<Movie> optionalMovie = movieRepo.findById(id);
             return optionalMovie.orElseThrow(() -> new NotFoundException("Movie Id Not Found"));
         }else{
             throw new InvalidIdException("Movie Id is Invalid");
