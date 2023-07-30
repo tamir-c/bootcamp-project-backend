@@ -3,11 +3,11 @@ package com.example.SkyTravel.service;
 import com.example.SkyTravel.exception.InvalidIdException;
 import com.example.SkyTravel.exception.NotFoundException;
 import com.example.SkyTravel.model.City;
-import com.example.SkyTravel.model.Genre;
+
 import com.example.SkyTravel.repository.CityRepository;
-import org.aspectj.weaver.ast.Not;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class CityService {
     public List<City> getAllCities() {
         List<City> cityList = cityRepo.findAll();
         if(cityList.isEmpty()){
-            throw new NotFoundException("Not Found");
+            throw new NotFoundException("Cities Not Found");
         }
         return cityList;
     }
