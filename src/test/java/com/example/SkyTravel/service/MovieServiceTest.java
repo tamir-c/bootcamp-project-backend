@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -23,6 +24,9 @@ public class MovieServiceTest {
 
     @MockBean
     MovieRepository mockRepo;
+
+    @MockBean
+    GenreService genreService;
 
     @Autowired
     MovieService movieService;
@@ -38,43 +42,39 @@ public class MovieServiceTest {
         assertEquals("Movies Not Found", thrown.getMessage());
         verify(mockRepo, times(1)).findAll();
 
-
-
     }
-
 
     @Test
-    public void getAllMoviesDoesNotThrowException(){
-//        Genre genre = new Genre();
-//        genre.setGenre_id(1);
-//        genre.setGenre_name("Action");
-//
-//        int id = 12;
-//        Movie movie = new Movie();
-//        movie.setMovie_name("Movie 1");
-//
-//        movie.setDescription("Movie Description");
-//
-//        movie.setDirector("Uzma");
-//        movie.setGenre(genre);
-//
-//        movie.setDuration_minutes(50);
-//
-//        movie.setRelease_year("2020");
-//
-//        movie.setPoster_url("url");
-//
-//        List<Movie> m = movieService.getAllMovies();
+    public void getMovieByIdReturnsMovie(){
+
+        //arrange
+        int id = 1;
+        Genre genre = new Genre();
+        genre.setGenre_id(1);
+        genre.setGenre_name("Action");
+
+        Movie movie = new Movie();
+        movie.setMovie_name("Movie 1");
+        movie.setPoster_url("poster_url");
+        movie.setGenre(genre);
+        movie.setDuration_minutes(90);
+        movie.setDescription("Movie desc");
+        movie.setDirector("Uzma");
+        movie.setRelease_year("2023");
 
 
+        Optional<Movie> optMovie = Optional.of(movie);
+        when(mockRepo.findById(1)).thenReturn(optMovie);
 
+        //act
+        Movie m = movieService.getMovieById(id);
 
-
-
-
-
+        //assert
+        assertEquals("Movie 1", m.getMovie_name());
+        verify(mockRepo, times(1)).findById(1);
 
     }
+
 
 
 }
