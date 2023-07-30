@@ -25,11 +25,11 @@ public class MovieServiceTest {
     @MockBean
     MovieRepository mockRepo;
 
-    @MockBean
-    GenreService genreService;
 
     @Autowired
     MovieService movieService;
+
+
 
     @Test
     public void getAllMoviesThrowsExceptionIfNoMovies(){
