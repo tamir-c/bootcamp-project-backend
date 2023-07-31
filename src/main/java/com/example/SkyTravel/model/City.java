@@ -24,7 +24,6 @@ public class City {
 
     private String city_url;
 
-
     private double longitude;
 
     private double latitude;

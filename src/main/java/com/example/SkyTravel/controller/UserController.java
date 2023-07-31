@@ -6,12 +6,11 @@ import com.example.SkyTravel.model.User;
 import com.example.SkyTravel.service.MovieService;
 import com.example.SkyTravel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -26,4 +25,13 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
+    @PostMapping
+    public ResponseEntity<User> postUser(@RequestBody User u) {
+        User createdU = userService.postUser(u);
+        if (createdU == null) {
+            return new ResponseEntity<>(new User(), HttpStatus.PRECONDITION_FAILED);
+        } else {
+            return new ResponseEntity<>(createdU, HttpStatus.CREATED);
+        }
+    }
 }
