@@ -4,6 +4,7 @@ import com.example.SkyTravel.model.City;
 import com.example.SkyTravel.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,13 +18,14 @@ public class CityController {
 
 
     @GetMapping
-    public List<City> getAllCities() {
-        return cityService.getAllCities();
+    public ResponseEntity<List<City>>  getAllCities() {
+        return ResponseEntity.ok(cityService.getAllCities());
+
     }
 
-    @GetMapping("/{cityId}")
-    public City getCityById(@PathVariable int cityId) {
-        return cityService.getCityById(cityId);
+    @GetMapping("/{id}")
+    public ResponseEntity<City> getCityById(@PathVariable int id) {
+        return ResponseEntity.ok(cityService.getCityById(id));
     }
 
 

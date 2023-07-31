@@ -18,9 +18,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepo;
 
-    public User getUserById(int userId) {
-        if(userId > 0){
-            Optional<User> optionalUser = userRepo.findById(userId);
+    public User getUserById(int id) {
+        if(id > 0){
+            Optional<User> optionalUser = userRepo.findById(id);
             return optionalUser.orElseThrow(() -> new NotFoundException("User Not Found"));
         }else{
             throw new InvalidIdException("User ID is invalid");

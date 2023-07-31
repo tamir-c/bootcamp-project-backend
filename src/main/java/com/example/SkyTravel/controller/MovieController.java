@@ -3,6 +3,8 @@ package com.example.SkyTravel.controller;
 import com.example.SkyTravel.model.Movie;
 import com.example.SkyTravel.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,14 +16,13 @@ public class MovieController {
     private MovieService movieService;
 
     @GetMapping
-    public List<Movie> getAllMovies() {
-        return movieService.getAllMovies();
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        return ResponseEntity.ok(movieService.getAllMovies());
     }
 
-    @GetMapping("/{movieId}")
-    public Movie getMovieById(@PathVariable int movieId) {
-        return movieService.getMovieById(movieId);
+    @GetMapping("/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable int id) {
+        return ResponseEntity.ok(movieService.getMovieById(id));
     }
-
 
 }

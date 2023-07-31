@@ -4,6 +4,7 @@ package com.example.SkyTravel.controller;
 import com.example.SkyTravel.model.MovieCity;
 import com.example.SkyTravel.service.MovieCityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +17,13 @@ public class MovieCityController {
     private MovieCityService movieCityService;
 
     @GetMapping
-    public List<MovieCity> getAllMovieCities() {
-        return movieCityService.getAllMovieCities();
+    public ResponseEntity<List<MovieCity>> getAllMovieCities() {
+        return ResponseEntity.ok(movieCityService.getAllMovieCities());
     }
 
-    @GetMapping("/{movieCityId}")
-    public MovieCity getMovieCityById(@PathVariable int movieCityId) {
-        return movieCityService.getMovieCityById(movieCityId);
+    @GetMapping("/{id}")
+    public ResponseEntity<MovieCity> getMovieCityById(@PathVariable int id) {
+        return ResponseEntity.ok(movieCityService.getMovieCityById(id));
     }
 
 }

@@ -27,9 +27,9 @@ public class CityService {
         return cityList;
     }
 
-    public City getCityById(int cityId) {
-        if(cityId > 0){
-            Optional<City> optCity = cityRepo.findById(cityId);
+    public City getCityById(int id) {
+        if(id > 0){
+            Optional<City> optCity = cityRepo.findById(id);
             return optCity.orElseThrow(() -> new NotFoundException("City Not Found"));
         }else{
             throw new InvalidIdException("City Id is invalid");

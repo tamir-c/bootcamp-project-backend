@@ -24,9 +24,9 @@ public class MovieCityService {
         return movieCityList;
     }
 
-    public MovieCity getMovieCityById(int movieCityId) {
-        if(movieCityId > 0){
-            Optional<MovieCity> optionalMovieCity = movieCityRepo.findById(movieCityId);
+    public MovieCity getMovieCityById(int id) {
+        if(id > 0){
+            Optional<MovieCity> optionalMovieCity = movieCityRepo.findById(id);
             return optionalMovieCity.orElseThrow(() -> new NotFoundException("Id Not Found"));
         }else{
             throw new InvalidIdException("MovieCity Id is invalid");

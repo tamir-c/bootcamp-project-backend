@@ -25,6 +25,7 @@ dependencies {
 	testImplementation group: 'com.h2database', name: 'h2', version: '2.1.210'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 tasks.named('test') {

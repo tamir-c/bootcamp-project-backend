@@ -24,9 +24,9 @@ public class GenreService {
         return genreList;
     }
 
-    public Genre getGenreById(int genreId) {
-        if(genreId > 0){
-            Optional<Genre> optionalGenre = genreRepo.findById(genreId);
+    public Genre getGenreById(int id) {
+        if(id > 0){
+            Optional<Genre> optionalGenre = genreRepo.findById(id);
             return optionalGenre.orElseThrow(() -> new NotFoundException("Genre Not Found"));
         }else{
             throw new InvalidIdException("Genre Id is invalid");
