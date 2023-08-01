@@ -30,8 +30,8 @@ public class Movie {
 
     // Many movies can belong to one genre
     @NonNull
-    @JsonIgnore
-    @ManyToOne
+
+    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
