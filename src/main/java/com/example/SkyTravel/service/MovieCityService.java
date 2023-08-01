@@ -2,7 +2,9 @@ package com.example.SkyTravel.service;
 
 import com.example.SkyTravel.exception.InvalidIdException;
 import com.example.SkyTravel.exception.NotFoundException;
+import com.example.SkyTravel.model.City;
 import com.example.SkyTravel.model.MovieCity;
+import com.example.SkyTravel.repository.CityRepository;
 import com.example.SkyTravel.repository.MovieCityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,9 @@ public class MovieCityService {
     @Autowired
     private MovieCityRepository movieCityRepo;
 
+    @Autowired
+    private CityRepository cityRepo;
+
     public List<MovieCity> getAllMovieCities() {
         List<MovieCity> movieCityList = movieCityRepo.findAll();
         if(movieCityList.isEmpty()){
@@ -24,10 +29,15 @@ public class MovieCityService {
         return movieCityList;
     }
 
-    public MovieCity getMovieCityById(int id) {
+    public List<City> getMovieCitiesById(int id) {
         if(id > 0){
-            Optional<MovieCity> optionalMovieCity = movieCityRepo.findById(id);
-            return optionalMovieCity.orElseThrow(() -> new NotFoundException("Id Not Found"));
+            List<City> optionalMovieCities = cityRepo.findCitiesByMovieId(id);
+            if (optionalMovieCities.size() == 0) {
+                throw new NotFoundException("Id Not Found");
+            }
+            else {
+                return optionalMovieCities;
+            }
         }else{
             throw new InvalidIdException("MovieCity Id is invalid");
         }

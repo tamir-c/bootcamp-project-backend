@@ -1,6 +1,7 @@
 package com.example.SkyTravel.controller;
 
 
+import com.example.SkyTravel.model.City;
 import com.example.SkyTravel.model.MovieCity;
 import com.example.SkyTravel.service.MovieCityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class MovieCityController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieCity> getMovieCityById(@PathVariable int id) {
-        return ResponseEntity.ok(movieCityService.getMovieCityById(id));
+    public ResponseEntity<List<City>> getMovieCityById(@PathVariable int id) {
+        return ResponseEntity.ok(movieCityService.getMovieCitiesById(id));
     }
 
 }
