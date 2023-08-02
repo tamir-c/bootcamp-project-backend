@@ -39,6 +39,12 @@ public class UserService {
         return userRepo.save(newUser);
     }
 
+    public String userName(String email){
+        User user = userRepo.findByEmail(email);
+        return  user.getDisplay_name();
+
+    }
+
 
     public boolean authenticate(String email, String password) {
         User user = userRepo.findByEmail(email);

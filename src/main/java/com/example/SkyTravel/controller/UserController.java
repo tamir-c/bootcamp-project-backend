@@ -35,6 +35,7 @@ public class UserController {
     public ResponseEntity<User> login(@RequestBody User user) {
         // Authenticate the user
         if (userService.authenticate(user.getEmail(), user.getPassword())) {
+            user.setDisplay_name(userService.userName(user.getEmail()));
             return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
         } else {
             return new ResponseEntity<>(new User(), HttpStatus.NOT_FOUND);
