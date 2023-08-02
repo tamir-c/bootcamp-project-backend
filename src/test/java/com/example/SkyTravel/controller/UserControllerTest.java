@@ -64,7 +64,7 @@ public class UserControllerTest {
         when(mockedService.postUser(any())).thenReturn(testUser);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/users")
+                .post("/users/register")
                 .accept(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(testUser))
                 .contentType(MediaType.APPLICATION_JSON);
@@ -85,7 +85,7 @@ public class UserControllerTest {
         when(mockedService.postUser(any())).thenReturn(null);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/users")
+                .post("/users/register")
                 .accept(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(testUser))
                 .contentType(MediaType.APPLICATION_JSON);
