@@ -1,5 +1,6 @@
 package com.example.SkyTravel.controller;
 
+import com.example.SkyTravel.exception.EmailExistException;
 import com.example.SkyTravel.exception.InvalidIdException;
 import com.example.SkyTravel.exception.NotFoundException;
 import org.springdoc.api.ErrorMessage;
@@ -20,6 +21,12 @@ public class WebExceptionHandler {
 
     @ExceptionHandler({InvalidIdException.class})
     public final ResponseEntity<ErrorMessage> handleInvalidId(Exception ex, WebRequest request) {
+        int status = HttpStatus.BAD_REQUEST.value();
+        return ResponseEntity.status(status).body(new ErrorMessage(ex.getMessage()));
+    }
+
+    @ExceptionHandler({EmailExistException.class})
+    public final ResponseEntity<ErrorMessage> handleEmailExist(Exception ex, WebRequest request) {
         int status = HttpStatus.BAD_REQUEST.value();
         return ResponseEntity.status(status).body(new ErrorMessage(ex.getMessage()));
     }

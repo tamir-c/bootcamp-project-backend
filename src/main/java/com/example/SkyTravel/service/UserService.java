@@ -1,5 +1,6 @@
 package com.example.SkyTravel.service;
 
+import com.example.SkyTravel.exception.EmailExistException;
 import com.example.SkyTravel.exception.InvalidIdException;
 import com.example.SkyTravel.exception.NotFoundException;
 import com.example.SkyTravel.model.User;
@@ -32,7 +33,7 @@ public class UserService {
 
     public User postUser(User newUser) {
         if (userRepo.findByEmail(newUser.getEmail()) != null) {
-            throw new RuntimeException("Email already exists!");
+            throw new EmailExistException("Email address is already registered");
         }
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
 
