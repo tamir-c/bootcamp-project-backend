@@ -36,6 +36,7 @@ public class UserController {
         // Authenticate the user
         if (userService.authenticate(user.getEmail(), user.getPassword())) {
             user.setDisplay_name(userService.userName(user.getEmail()));
+            user.setPassword("");
             return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
         } else {
             return new ResponseEntity<>(new User(), HttpStatus.NOT_FOUND);
